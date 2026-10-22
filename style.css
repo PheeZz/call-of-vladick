@@ -52,8 +52,10 @@ footer { display: flex; justify-content: space-between; gap: 20px; color: var(--
 .stamp { display: inline-block; padding: 7px 11px; margin-bottom: 25px; border: 2px solid var(--accent); color: var(--accent); background: #ffcf0008; transform: rotate(-4deg); font-size: 12px; font-weight: 800; }
 .reaction h1 { font-size: clamp(32px, 3.5vw, 48px); letter-spacing: -.4px; }
 .reaction .description { margin-bottom: 22px; }
-.meme { margin: 0 0 22px; max-width: 310px; background: #0d120e; border: 1px solid var(--line); }
-.meme img { display: block; width: 100%; height: 190px; object-fit: contain; background: #080c09; }
+.meme { position: relative; isolation: isolate; overflow: hidden; margin: 0 0 22px; max-width: 310px; padding: 8px; background: linear-gradient(135deg, #15232a, #080d12 55%, #101b22); border: 1px solid #64bdda85; box-shadow: inset 0 0 24px #123c4d4a, 0 0 12px #38a9cf20; }
+.meme::before { content: 'LIVE FEED  //  VISUAL ID'; position: absolute; z-index: 3; top: 13px; left: 15px; color: #9cecff; font: 7px/1 monospace; letter-spacing: 1px; text-shadow: 0 0 7px #54d9ff; pointer-events: none; }
+.meme::after { content: ''; position: absolute; z-index: 2; inset: 8px 8px 42px; border: 1px solid #63d7ff50; background: repeating-linear-gradient(0deg, #77d9ff10 0 1px, transparent 1px 4px), linear-gradient(180deg, transparent 48%, #72deff44 50%, transparent 52%); background-size: auto, 100% 240%; background-position: 0 0, 0 0; box-shadow: inset 0 0 22px #4acbff22; pointer-events: none; animation: gachi-hud-scan 4s linear infinite; }
+.meme img { position: relative; z-index: 1; display: block; width: 100%; height: 190px; object-fit: contain; background: #070c12; filter: grayscale(.7) sepia(.3) hue-rotate(155deg) saturate(1.8) contrast(1.12); mix-blend-mode: screen; }
 .meme figcaption { padding: 8px 12px; font-size: 10px; }
 .meme a { color: var(--muted); }
 .next { width: 100%; min-height: 56px; }
@@ -223,7 +225,9 @@ dialog p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-bottom
 .signal-bars i:nth-child(3) { height: 8px; animation-delay: .4s; }
 .signal-bars i:nth-child(4) { height: 10px; animation-delay: .6s; }
 .hud-radar { position: relative; width: 72px; height: 72px; border: 1px solid #ffcf0040; border-radius: 50%; background: radial-gradient(circle, transparent 30%, #ffcf0025 31% 32%, transparent 33% 63%, #ffcf0025 64% 65%, transparent 66%), linear-gradient(transparent 49%, #ffcf0025 49% 51%, transparent 51%), linear-gradient(90deg, transparent 49%, #ffcf0025 49% 51%, transparent 51%); margin-top: 22px; overflow: hidden; flex-shrink: 0; }
-.hud-radar i { position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 0deg, transparent 0deg 275deg, #ffcf001b 345deg, #ffcf0070 359deg, transparent 360deg); animation: radar-sweep 7s linear infinite; }
+.hud-radar i { position: absolute; z-index: 2; inset: 0; border-radius: 50%; background: conic-gradient(from 0deg, transparent 0deg 275deg, #ffcf001b 345deg, #ffcf0070 359deg, transparent 360deg); animation: radar-sweep 7s linear infinite; }
+.holo-dancer { position: absolute; z-index: 1; inset: 2px; width: calc(100% - 4px); height: calc(100% - 4px); object-fit: contain; filter: grayscale(1) sepia(1) hue-rotate(155deg) saturate(4) contrast(1.35) brightness(.75) drop-shadow(0 0 2px #67e8ff) drop-shadow(0 0 7px #278dff); mix-blend-mode: screen; opacity: .9; }
+.hud-radar::after { content: ''; position: absolute; z-index: 4; inset: 0; border: 1px solid #64d7ff65; border-radius: inherit; background: repeating-linear-gradient(0deg, #63d9ff12 0 1px, transparent 1px 3px); box-shadow: inset 0 0 14px #49bfff50, 0 0 10px #229bff3b; pointer-events: none; }
 .hud-radar b, .hud-radar em { position: absolute; top: 24%; left: 62%; width: 3px; height: 3px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 5px #ffcf0060; animation: signal-breathe 3.8s infinite; }
 .hud-radar em { top: 66%; left: 34%; animation-delay: 1.2s; }
 .briefing p.radar-caption { max-width: 210px; margin: 10px 0 0; color: #abb69a; font: 9px/1.7 monospace; }
@@ -236,7 +240,7 @@ dialog p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-bottom
 @keyframes signal-breathe { 0%, 100% { opacity: .3; } 45%, 65% { opacity: 1; } }
 @keyframes radar-sweep { to { transform: rotate(360deg); } }
 @media (max-width: 800px) { .hud-radar { width: 55px; height: 55px; } }
-@media (max-width: 560px) { .desk-caption { top: 13svh; left: 7vw; max-width: 150px; font-size: 10px; letter-spacing: 1px; } .table-candle { right: 8vw; top: 18svh; transform: scale(.7); transform-origin: top right; } .hud-radar, .briefing p.radar-caption { display: none; } .hud-channel { font-size: 7px; } .hud-waiting { display: none; } .hud-reticle { display: none; } }
+@media (max-width: 560px) { .desk-caption { top: 13svh; left: 7vw; max-width: 150px; font-size: 10px; letter-spacing: 1px; } .table-candle { right: 8vw; top: 18svh; transform: scale(.7); transform-origin: top right; } .briefing { padding-right: 74px; } .hud-radar { display: block; position: absolute; top: 50%; right: 10px; width: 54px; height: 54px; margin: 0; transform: translateY(-50%); } .briefing p.radar-caption { display: none; } .hud-channel { font-size: 7px; } .hud-waiting { display: none; } .hud-reticle { display: none; } }
 
 .table-atmosphere { position: fixed; z-index: 1; inset: 0; overflow: hidden; pointer-events: none; }
 .light-shaft { position: absolute; top: -40%; left: 30%; width: 50%; height: 170%; background: linear-gradient(90deg, transparent, #edc77c0c 45%, #f6dda418 55%, transparent 70%); transform-origin: top center; animation: room-light 16s ease-in-out infinite alternate; }
@@ -275,6 +279,7 @@ dialog p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-bottom
 @keyframes candle-smoke { 0% { opacity: 0; transform: translate(0, 0) scale(.6); } 25% { opacity: .4; } 100% { opacity: 0; transform: translate(-24px, -100px) scale(1.8); } }
 @keyframes boot-scan { from { background-position: 0 200%; } to { background-position: 0 -200%; } }
 @keyframes answer-scan { 0% { top: 0; opacity: 0; } 15% { opacity: .65; } 100% { top: 100%; opacity: 0; } }
+@keyframes gachi-hud-scan { from { background-position: 0 0, 0 -140%; } to { background-position: 0 0, 0 140%; } }
 @keyframes target-lock { 0% { scale: 1.7; opacity: .3; } 60% { scale: .9; opacity: 1; } 100% { scale: 1; } }
 @keyframes answer-signal { 0%, 100% { opacity: .7; } 40% { opacity: 1; box-shadow: 0 0 6px #ffcf0090; } }
 @keyframes deployment-confirm { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
