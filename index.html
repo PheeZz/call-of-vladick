@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101411">
+  <meta name="description" content="Владик, Данечка зовёт в колду. Десять вопросов и ни одного шанса отмазаться.">
+  <title>Владик, погнали в колду? — Call of Vladick</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="squad-emblem" viewBox="0 0 32 36">
+      <path d="M16 2 29 7v12c0 6-7 11-13 15C10 30 3 25 3 19V7Z" fill="currentColor" fill-opacity=".06" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+      <path d="m9 16 7-5 7 5M9 23l7-5 7 5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/>
+    </symbol>
+  </svg>
+  <section id="boot-screen" class="boot-screen" aria-labelledby="boot-title">
+    <div class="boot-panel">
+      <div class="boot-emblem" aria-hidden="true"><svg class="squad-mark" focusable="false"><use href="#squad-emblem"/></svg><i></i></div>
+      <p class="boot-code">Лично Владику / от Данечки</p>
+      <h1 id="boot-title">Владик, тебе пакет.</h1>
+      <p id="boot-status" class="boot-status" role="status">Данечка собирает личное дело Владика…</p>
+      <div id="asset-progress" class="asset-progress" role="progressbar" aria-label="Загрузка материалов" aria-valuemin="0" aria-valuemax="12" aria-valuenow="0"><span id="asset-progress-fill"></span></div>
+      <div class="boot-count"><span>Проверка снаряжения</span><span id="asset-count">0 / 12</span></div>
+      <button id="start-experience" class="next" type="button" disabled>Загружаем…</button>
+      <button id="retry-assets" class="dialog-secondary" type="button" hidden>Повторить загрузку</button>
+      <p class="boot-note">Данечка уже ждёт. Отмазки не доставлять.</p>
+    </div>
+  </section>
+  <div id="cinematic-scene" class="cinematic-scene">
+    <div class="table-atmosphere" aria-hidden="true"><span class="light-shaft"></span><span class="landing-wave"></span><div class="table-dust"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i style="--i:10"></i><i style="--i:11"></i><i style="--i:12"></i><i style="--i:13"></i></div></div>
+    <div class="desk" aria-hidden="true">
+      <div class="desk-map"><span>Сектор 04 / оперативная карта</span><svg viewBox="0 0 600 440" fill="none"><path d="M-30 65C130 230 160-110 350 55S520 300 650 120M-20 100C130 260 175-75 350 90S530 335 650 150M-20 135C140 295 180-40 350 125S540 370 650 180M-20 170C150 330 190-5 350 160S550 405 650 210M-20 205C150 365 200 30 350 195S560 440 650 240M-20 240C160 400 210 65 350 230S570 475 650 270M-20 275C170 435 220 100 350 265S580 510 650 300"/><path d="M90 0V440M240 0V440M390 0V440M540 0V440M0 70H600M0 220H600M0 370H600" stroke-dasharray="3 7"/><circle cx="355" cy="240" r="36"/><path d="M300 240H410M355 185V295"/></svg></div>
+      <div class="desk-pencil"></div>
+    </div>
+    <div class="desk-caption" data-text="Отдел особо убедительных приглашений" aria-hidden="true">Отдел особо убедительных приглашений</div>
+    <div class="table-candle" aria-hidden="true"><div class="candle-glow"></div><div class="candle-smoke"><i></i><i></i><i></i></div><div class="candle-flame"></div><div class="candle-wax"></div><div class="candle-holder"></div></div>
+    <div class="envelope" aria-hidden="true">
+      <div class="envelope-back"></div>
+      <div class="envelope-flap"></div>
+    </div>
+    <div class="envelope envelope-cover">
+      <div class="envelope-front" aria-hidden="true">
+        <span class="envelope-code">Лично в руки / экз. 01</span>
+        <div class="secret-stamp">Совершенно<br>секретно<span>Вскрыть немедленно</span></div>
+        <div class="envelope-address"><span>Кому</span><strong>Владику. Лично в руки.</strong><small>От Данечки. Отказ не принимается.</small></div>
+        <span class="envelope-barcode"></span>
+      </div>
+      <button id="pull-tab" class="tear-strip" type="button" aria-label="Потяни край конверта вправо или вверх. С клавиатуры — Enter или пробел." disabled><span>Потянуть, чтобы перестать ломаться</span><b aria-hidden="true">↗</b></button>
+    </div>
+  <div class="page">
+    <header class="header">
+      <a class="brand" href="./" aria-label="Call of Vladick, начать сначала">call of<br><strong>vladick<span>®</span></strong></a>
+      <div class="header-meta"><span class="document-classification">Совершенно секретно</span><span class="status"><i></i> В отряде есть место</span></div>
+    </header>
+    <main>
+      <aside class="briefing">
+        <div class="insignia" aria-hidden="true"><svg class="squad-mark" focusable="false"><use href="#squad-emblem"/></svg></div>
+        <p class="briefing-title">Операция<br>«Хватит ломаться»</p>
+        <p>Проверка боеготовности<br>к Call of Duty: Modern Warfare 4</p>
+        <div class="hud-radar" aria-hidden="true"><i></i><b></b><em></em></div>
+        <p class="radar-caption"><strong>Детектор пидорасов</strong><br>Ни одной сигнатуры не обнаружено.<br><span>Пока что.</span></p>
+        <div class="briefing-bottom"><span>Боец</span><strong>Владик</strong><span>Кто зовёт</span><strong>Данечка</strong></div>
+      </aside>
+      <section class="quiz" aria-label="Проверка боеготовности">
+        <div class="quiz-hud" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="hud-scan"></span><span class="hud-reticle">+</span></div>
+        <div class="quiz-top"><span id="step">Вопрос 01 / 10</span><span id="stage-label">Без подвоха. Почти.</span></div>
+        <div class="progress" role="progressbar" aria-label="Пройдено вопросов" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><span id="progress-fill"></span></div>
+        <div class="hud-channel" aria-hidden="true"><span class="signal-bars"><i></i><i></i><i></i><i></i></span><span>Канал дружбы активен</span><span class="hud-waiting">Лобби ждёт</span></div>
+        <div id="screen" class="screen"></div>
+        <div class="quiz-bottom"><span>Все ответы конфиденциальны.*</span><span>*Но мы всё поняли.</span></div>
+      </section>
+    </main>
+    <footer><span>Независимый тест на дружбу. Научность: сомнительная.</span><span>10 вопросов · 0 шансов отмазаться</span></footer>
+  </div>
+  </div>
+  <div id="intro-controls" class="intro-controls" hidden><span id="intro-instruction" role="status">Входящий пакет Владику / от Данечки</span><button id="skip-intro" type="button">Пропустить вступление <span aria-hidden="true">↗</span></button></div>
+  <audio id="radio-audio" src="assets/music.mp3" loop preload="auto"></audio>
+  <details id="field-radio" class="field-radio" hidden>
+    <summary><span class="radio-lamp" aria-hidden="true"></span><span>Радио Данечки · FM 04</span><b aria-hidden="true">⌃</b></summary>
+    <div class="radio-display"><span>Сейчас в эфире</span><p>Спокойная драка алкашей на районе происходит под эту мелодию</p></div>
+    <div class="radio-controls"><button id="radio-toggle" type="button" aria-label="Включить музыку" aria-pressed="false">▶</button><label for="radio-volume">Громкость</label><input id="radio-volume" type="range" min="0" max="100" value="35" aria-label="Громкость музыки"><output id="radio-level" for="radio-volume">35%</output></div>
+    <p id="radio-status" class="radio-status" role="status">Эфир готов</p>
+  </details>
+  <dialog id="trap-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description">
+    <form method="dialog">
+      <span class="dialog-symbol" aria-hidden="true">♂</span>
+      <h2 id="dialog-title"></h2>
+      <p id="dialog-description"></p>
+      <button class="next" value="yes">Ладно, погнали</button>
+      <button class="dialog-secondary" value="also-yes">Да, но с недовольным лицом</button>
+    </form>
+  </dialog>
+  <noscript>Для викторины нужен JavaScript. Включи его — отряд ждёт.</noscript>
+</body>
+</html>
