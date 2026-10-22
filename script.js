@@ -115,7 +115,9 @@ const radio = document.querySelector('#field-radio');
 const radioToggle = document.querySelector('#radio-toggle');
 const radioVolume = document.querySelector('#radio-volume');
 const radioStatus = document.querySelector('#radio-status');
-music.volume = .35;
+music.volume = .2;
+const radioTitle = document.querySelector('#radio-title');
+radioTitle.innerHTML = radioTitle.textContent.split(' ').map((word, wordIndex) => `<span class="radio-word">${Array.from(word, (letter, index) => `<span class="radio-letter" style="--letter:${wordIndex * 5 + index}">&#${letter.codePointAt(0)};</span>`).join('')}</span>`).join(' ');
 
 function syncRadio() {
   const playing = !music.paused;
@@ -327,9 +329,6 @@ let attempts = 0;
 let interacted = false;
 let dialogMode = '';
 
-function sparks() {
-  return `<div class="sparks" aria-hidden="true">${Array.from({ length: 16 }, (_, i) => `<i style="--i:${i};--x:${Math.cos(i * Math.PI / 8) * 230}px;--y:${Math.sin(i * Math.PI / 8) * 180}px">${i % 3 === 0 ? '♂' : '✦'}</i>`).join('')}</div>`;
-}
 
 function paint(html) {
   page.dataset.screen = phase;
@@ -372,7 +371,7 @@ function showResult() {
   phase = 'result';
   step.textContent = 'Проверка завершена';
   document.querySelector('#stage-label').textContent = 'Допущен к совместному угару';
-  paint(`${sparks()}<div class="result-mark" aria-hidden="true"><svg class="squad-mark" focusable="false"><use href="#squad-emblem"/></svg></div><div class="deployment-status">Боевой допуск подтверждён<span>Владик + Данечка / отряд укомплектован</span></div><h1>Диагноз:<br>хочешь в колду.</h1><p class="description">Владик, сопротивление было достойным. Но результаты однозначны: тебе срочно нужна катка с Данечкой.</p><a class="next launch-game" href="steam://run/4435490" aria-label="Ехала — запустить Modern Warfare 4 в Steam">ЕХАЛА <span aria-hidden="true">↗</span></a><p class="fine-print">Владик, жми. Колда сама себя не запустит. Данечка ждёт.</p><button class="restart" data-action="restart">Перепройти и снова согласиться</button>`);
+  paint(`<div class="result-mark" aria-hidden="true"><svg class="squad-mark" focusable="false"><use href="#squad-emblem"/></svg></div><div class="deployment-status">Боевой допуск подтверждён<span>Владик + Данечка / отряд укомплектован</span></div><h1>Диагноз:<br>хочешь в колду.</h1><p class="description">Владик, сопротивление было достойным. Но результаты однозначны: тебе срочно нужна катка с Данечкой.</p><a class="next launch-game" href="steam://run/4435490" aria-label="Ехала — запустить Modern Warfare 4 в Steam">ЕХАЛА <span aria-hidden="true">↗</span></a><p class="fine-print">Владик, жми. Колда сама себя не запустит. Данечка ждёт.</p><button class="restart" data-action="restart">Перепройти и снова согласиться</button>`);
 }
 
 function openTrap(mode) {
