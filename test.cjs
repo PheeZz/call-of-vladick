@@ -74,7 +74,7 @@ assert.equal(playCalls, 0, 'Do not play while assets are loading');
 assert.equal(vm.runInContext('introActive', context), false);
 await new Promise(setImmediate);
 assert.equal(start.disabled, false);
-assert.equal(elements.get('#asset-progress').attributes['aria-valuenow'], 12);
+assert.equal(elements.get('#asset-progress').attributes['aria-valuenow'], 13);
 assert.equal(vm.runInContext('introActive', context), false, 'Loading must not start the cinematic automatically');
 music.readyState = 0;
 music.load = () => music.onerror();

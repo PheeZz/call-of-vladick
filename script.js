@@ -231,7 +231,8 @@ async function loadAssets() {
   retryButton.hidden = true;
   bootScreen.classList.remove('is-loaded');
   document.querySelector('#boot-status').textContent = 'Данечка собирает личное дело Владика…';
-  const total = memes.length + 2;
+  const assets = [...memes, 'anime-holo'];
+  const total = assets.length + 2;
   const progressBar = document.querySelector('#asset-progress');
   progressBar.setAttribute('aria-valuemax', total);
   let loaded = 0;
@@ -241,7 +242,7 @@ async function loadAssets() {
     document.querySelector('#asset-count').textContent = `${loaded} / ${total}`;
   }
   updateLoading();
-  const images = memes.map((meme) => new Promise((resolve, reject) => {
+  const images = assets.map((meme) => new Promise((resolve, reject) => {
     const image = new window.Image();
     const timeout = window.setTimeout(() => { image.onload = image.onerror = null; reject(new Error(meme)); }, 30000);
     image.onload = () => { window.clearTimeout(timeout); resolve(); };
