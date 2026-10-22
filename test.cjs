@@ -299,6 +299,17 @@ for (const meme of memes) {
   hashes.add(crypto.createHash('sha256').update(data).digest('hex'));
 }
 assert.equal(hashes.size, 10, 'Each question has a different GIF file');
+const css = fs.readFileSync('style.css', 'utf8');
+const pageRules = [...css.matchAll(/(?:^|\n)\.page\s*\{([^}]+)\}/g)].map(match => match[1]).join(';');
+const origins = [...pageRules.matchAll(/transform-origin:\s*([^;]+)/g)];
+assert.equal(origins.at(-1)?.[1].trim(), '50% 0', 'Intro cleanup must not change the rotation origin');
+assert.match(pageRules, /transform:\s*var\(--terminal-pose\)/);
+const extractionTracks = [...css.matchAll(/@keyframes dossier-unpack\s*\{(.*)/g)];
+assert.equal(extractionTracks.length, 2);
+for (const [, track] of extractionTracks) {
+  assert.match(track, /100%\s*\{\s*opacity: 1; transform: var\(--terminal-pose\)/, 'End pose must equal the resting pose');
+  assert.ok(!track.includes('clip-path'), 'Clipping the shell would flatten its 3D layers');
+}
 console.log('Passed: loading and retry including music; radio start/pause/volume/play rejection; envelope drag; bounded camera movement; HUD phases; 1024 quiz routes; no confetti; Steam link; repeated exit popup.');
 
 })().catch(error => { console.error(error); process.exitCode = 1; });
