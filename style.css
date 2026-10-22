@@ -225,9 +225,12 @@ dialog p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-bottom
 .signal-bars i:nth-child(3) { height: 8px; animation-delay: .4s; }
 .signal-bars i:nth-child(4) { height: 10px; animation-delay: .6s; }
 .hud-radar { position: relative; width: 72px; height: 72px; border: 1px solid #ffcf0040; border-radius: 50%; background: radial-gradient(circle, transparent 30%, #ffcf0025 31% 32%, transparent 33% 63%, #ffcf0025 64% 65%, transparent 66%), linear-gradient(transparent 49%, #ffcf0025 49% 51%, transparent 51%), linear-gradient(90deg, transparent 49%, #ffcf0025 49% 51%, transparent 51%); margin-top: 22px; overflow: hidden; flex-shrink: 0; }
-.hud-radar i { position: absolute; z-index: 2; inset: 0; border-radius: 50%; background: conic-gradient(from 0deg, transparent 0deg 275deg, #ffcf001b 345deg, #ffcf0070 359deg, transparent 360deg); animation: radar-sweep 7s linear infinite; }
-.holo-dancer { position: absolute; z-index: 1; inset: 2px; width: calc(100% - 4px); height: calc(100% - 4px); object-fit: contain; filter: grayscale(1) sepia(1) hue-rotate(155deg) saturate(4) contrast(1.35) brightness(.75) drop-shadow(0 0 2px #67e8ff) drop-shadow(0 0 7px #278dff); mix-blend-mode: screen; opacity: .9; }
-.hud-radar::after { content: ''; position: absolute; z-index: 4; inset: 0; border: 1px solid #64d7ff65; border-radius: inherit; background: repeating-linear-gradient(0deg, #63d9ff12 0 1px, transparent 1px 3px); box-shadow: inset 0 0 14px #49bfff50, 0 0 10px #229bff3b; pointer-events: none; }
+.hud-radar i { position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 0deg, transparent 0deg 275deg, #ffcf001b 345deg, #ffcf0070 359deg, transparent 360deg); animation: radar-sweep 7s linear infinite; }
+.tablet-hologram { position: absolute; top: 14px; right: 14px; width: 58px; height: 76px; margin: 0; overflow: hidden; border: 1px solid #64d7ff75; background: #07121bcc; box-shadow: inset 0 0 14px #49bfff35, 0 0 12px #229bff28; }
+.tablet-hologram img { display: block; width: 100%; height: 100%; object-fit: contain; filter: grayscale(1) sepia(1) hue-rotate(155deg) saturate(4) contrast(1.35) brightness(.75) drop-shadow(0 0 2px #67e8ff) drop-shadow(0 0 7px #278dff); mix-blend-mode: screen; opacity: .9; }
+.tablet-hologram::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, #63d9ff16 0 1px, transparent 1px 3px); pointer-events: none; }
+.tablet-hologram::after { content: ''; position: absolute; left: 0; right: 0; top: -15%; height: 12%; background: #75e8ff28; box-shadow: 0 0 10px #49cfff90; animation: hud-scan 3.8s ease-in-out infinite alternate; pointer-events: none; }
+.tablet-hologram span { position: absolute; left: 2px; right: 2px; bottom: 2px; color: #9deaff; background: #06101ccc; font: 5px/1.3 monospace; text-align: center; letter-spacing: .2px; }
 .hud-radar b, .hud-radar em { position: absolute; top: 24%; left: 62%; width: 3px; height: 3px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 5px #ffcf0060; animation: signal-breathe 3.8s infinite; }
 .hud-radar em { top: 66%; left: 34%; animation-delay: 1.2s; }
 .briefing p.radar-caption { max-width: 210px; margin: 10px 0 0; color: #abb69a; font: 9px/1.7 monospace; }
@@ -239,8 +242,8 @@ dialog p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-bottom
 @keyframes hud-scan { from { top: 10%; } to { top: 80%; } }
 @keyframes signal-breathe { 0%, 100% { opacity: .3; } 45%, 65% { opacity: 1; } }
 @keyframes radar-sweep { to { transform: rotate(360deg); } }
-@media (max-width: 800px) { .hud-radar { width: 55px; height: 55px; } }
-@media (max-width: 560px) { .desk-caption { top: 13svh; left: 7vw; max-width: 150px; font-size: 10px; letter-spacing: 1px; } .table-candle { right: 8vw; top: 18svh; transform: scale(.7); transform-origin: top right; } .briefing { padding-right: 74px; } .hud-radar { display: block; position: absolute; top: 50%; right: 10px; width: 54px; height: 54px; margin: 0; transform: translateY(-50%); } .briefing p.radar-caption { display: none; } .hud-channel { font-size: 7px; } .hud-waiting { display: none; } .hud-reticle { display: none; } }
+@media (max-width: 800px) { .hud-radar { width: 55px; height: 55px; } .tablet-hologram { width: 42px; height: 58px; } }
+@media (max-width: 560px) { .desk-caption { top: 13svh; left: 7vw; max-width: 150px; font-size: 10px; letter-spacing: 1px; } .table-candle { right: 8vw; top: 18svh; transform: scale(.7); transform-origin: top right; } .briefing { padding-right: 62px; } .tablet-hologram { top: 50%; right: 10px; width: 40px; height: 52px; transform: translateY(-50%); } .hud-radar, .briefing p.radar-caption { display: none; } .hud-channel { font-size: 7px; } .hud-waiting { display: none; } .hud-reticle { display: none; } }
 
 .table-atmosphere { position: fixed; z-index: 1; inset: 0; overflow: hidden; pointer-events: none; }
 .light-shaft { position: absolute; top: -40%; left: 30%; width: 50%; height: 170%; background: linear-gradient(90deg, transparent, #edc77c0c 45%, #f6dda418 55%, transparent 70%); transform-origin: top center; animation: room-light 16s ease-in-out infinite alternate; }
