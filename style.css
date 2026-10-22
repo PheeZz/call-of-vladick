@@ -248,7 +248,7 @@ dialog p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-bottom
 .table-atmosphere { position: fixed; z-index: 1; inset: 0; overflow: hidden; pointer-events: none; }
 .light-shaft { position: absolute; top: -40%; left: 30%; width: 50%; height: 170%; background: linear-gradient(90deg, transparent, #edc77c0c 45%, #f6dda418 55%, transparent 70%); transform-origin: top center; animation: room-light 16s ease-in-out infinite alternate; }
 .room-smoke { position: absolute; inset: 0; overflow: hidden; }
-.room-smoke i { position: absolute; width: 46vw; height: 38vw; border-radius: 50%; background: radial-gradient(ellipse at 38% 48%, #c8d0c0a8 0, #a3ada370 30%, transparent 72%), radial-gradient(ellipse at 68% 52%, #b4beb25c 0, transparent 68%); filter: blur(20px); mix-blend-mode: screen; opacity: .4; animation: room-smoke-drift 20s ease-in-out infinite alternate; }
+.room-smoke i { position: absolute; width: 44vw; height: 76vh; background: radial-gradient(ellipse 46% 12% at 52% 84%, #c8d0c0a8, #a3ada370 36%, transparent 78%), radial-gradient(ellipse 42% 14% at 36% 61%, #c8d0c080, transparent 72%), radial-gradient(ellipse 50% 18% at 62% 39%, #b4beb27c, transparent 72%), radial-gradient(ellipse 44% 18% at 44% 16%, #aeb8af66, transparent 75%); filter: url(#smoke-warp) blur(7px); mix-blend-mode: screen; opacity: .4; animation: room-smoke-drift 20s ease-in-out infinite alternate; }
 .room-smoke i:nth-child(1) { top: -21%; left: -15%; }
 .room-smoke i:nth-child(2) { top: 8%; right: -22%; animation-delay: -7s; }
 .room-smoke i:nth-child(3) { bottom: -25%; left: 18%; animation-delay: -13s; }
@@ -300,7 +300,7 @@ dialog p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-bottom
 @keyframes deployment-confirm { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes deployment-wipe { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
 @keyframes launch-sheen { 0%, 75% { transform: skewX(-18deg) translateX(0); } 100% { transform: skewX(-18deg) translateX(600%); } }
-@media (max-width: 560px) { .table-dust i:nth-child(n+9), .spark-field i:nth-child(n+25) { display: none; } .room-smoke i { width: 78vw; height: 62vw; } .landing-wave { width: 90vw; top: 48%; } .light-shaft { left: 0; width: 100%; } .candle-smoke i:nth-child(3) { display: none; } .result-mark { width: 80px; height: 80px; } .deployment-status { font-size: 13px; padding-inline: 12px; } }
+@media (max-width: 560px) { .table-dust i:nth-child(n+9), .spark-field i:nth-child(n+25) { display: none; } .room-smoke i { width: 78vw; height: 68vh; } .landing-wave { width: 90vw; top: 48%; } .light-shaft { left: 0; width: 100%; } .candle-smoke i:nth-child(3) { display: none; } .result-mark { width: 80px; height: 80px; } .deployment-status { font-size: 13px; padding-inline: 12px; } }
 .page { padding: 24px 24px 18px; border: 1px solid #56604e; border-radius: 26px; background: repeating-linear-gradient(115deg, #ffffff02 0 1px, transparent 1px 4px), linear-gradient(140deg, #41473b, #1b211b 18%, #272e24 75%, #454c3d); box-shadow: inset 0 2px 1px #89917a70, inset 0 -3px 2px #030603, 0 4px 0 #080b08, 0 7px 0 #323a2e, 0 10px 0 #080b08, 0 35px 75px #000b; }
 .page::before { left: calc(50% - 3px); top: 8px; width: 6px; height: 6px; border: 1px solid #59634d; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #536d74, #080d10 60%); box-shadow: 0 0 0 2px #10150f; }
 .tablet-screen { position: relative; padding: 8px 22px 4px; border: 2px solid #080c09; border-radius: 10px; background: linear-gradient(125deg, #d0e3ad05, transparent 40%), var(--paper); box-shadow: 0 0 0 2px #535e4640, inset 0 0 30px #0006; }
@@ -360,4 +360,4 @@ dialog p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-bottom
 .radio-status { display: flex; align-items: center; justify-content: space-between; gap: 8px; color: #b2ba96; }
 .radio-status::after { content: ''; flex: 0 0 44px; height: 7px; background: repeating-linear-gradient(90deg, #11190d 0 2px, #6c79504d 2px 4px); border: 1px solid #18220f; border-radius: 2px; }
 @media (max-width: 560px) { .field-radio { top: 8px; width: min(300px, calc(100vw - 16px)); } }
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; transform: none !important; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; transform: none !important; } .smoke-filter-bank animate { display: none; } }
