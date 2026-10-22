@@ -14,3 +14,5 @@ GIF-мемы с Tenor. Локальные копии уменьшены до ш�
 | aniki.gif | https://media.tenor.com/CQ_c0nsvT4UAAAAC/gachimuchi-aniki.gif |
 | van-reaction.gif | https://media.tenor.com/5P3j6LjelBoAAAAC/van-darkholme.gif |
 | billy-dance.gif | https://media.tenor.com/wAHH2_8ezeoAAAAC/billy-gachi.gif |
+
+Шрифт радио: [Press Start 2P / Google Fonts](https://github.com/google/fonts/tree/main/ofl/pressstart2p), локально `radio-pixel.ttf`. Лицензия SIL OFL сохранена в `radio-pixel-OFL.txt`. Трек `music.mp3` предоставлен пользователем.
