@@ -61,7 +61,9 @@ node test.cjs
 
 ## GitHub Pages
 
-Когда понадобится публикация, загрузить `index.html`, `style.css`, `script.js` и папку `assets` в репозиторий. В Settings → Pages выбрать публикацию из корня ветки `main`. Пути относительные и подходят для сайта в подкаталоге репозитория.
+Сайт: https://pheezz.github.io/call-of-vladick/
+
+Репозиторий: https://github.com/PheeZz/call-of-vladick. GitHub Pages публикует корень `main`; обновление этой ветки запускает сборку автоматически. Пути относительные. Локальные архивы `backups/` исключены из Git.
 
 Публикация и Git-операции пока не выполнялись.
 
