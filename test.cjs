@@ -22,7 +22,8 @@ const reducedMotion = { matches: false, addEventListener(name, handler) { this[n
 const timers = [];
 for (const selector of ['#screen', '#step', '.progress', '#progress-fill', '#stage-label', '#trap-dialog', '#dialog-title', '#dialog-description', '#trick-hint', '.page', '#intro-controls', '#skip-intro', '#pull-tab', '#intro-instruction', '#cinematic-scene', '#boot-screen', '#start-experience', '#retry-assets', '#boot-status', '#asset-progress', '#asset-progress-fill', '#asset-count']) elements.set(selector, element());
 const screen = elements.get('#screen');
-for (const selector of ['#radio-audio', '#field-radio', '#radio-toggle', '#radio-volume', '#radio-level', '#radio-status']) elements.set(selector, element());
+for (const selector of ['#radio-audio', '#field-radio', '#radio-toggle', '#radio-volume', '#radio-level', '#radio-status', '#radio-title']) elements.set(selector, element());
+elements.get('#radio-title').textContent = 'Спокойная драка';
 const music = elements.get('#radio-audio');
 music.paused = true;
 music.readyState = 4;
@@ -101,7 +102,8 @@ await elements.get('#retry-assets').click();
 assert.equal(start.disabled, false, 'Retry recovers from a failed load');
 start.click();
 assert.equal(playCalls, 1, 'Start music from the startup click');
-assert.equal(music.volume, .35);
+assert.equal(music.volume, .2);
+assert.match(elements.get('#radio-title').innerHTML, /class="radio-letter"/);
 assert.equal(elements.get('#field-radio').hidden, false);
 elements.get('#radio-volume').value = '0';
 elements.get('#radio-volume').input();
@@ -271,7 +273,7 @@ for (let route = 0; route < 1024; route++) {
   assert.match(screen.innerHTML, /Диагноз:/);
   assert.equal(page.dataset.screen, 'result');
   assert.match(screen.innerHTML, /Боевой допуск подтверждён/);
-  assert.ok(screen.innerHTML.includes('class="sparks"'), 'Keep the final celebration');
+  assert.equal(screen.innerHTML.includes('class="sparks"'), false, 'No confetti in the final either');
   assert.equal(elements.get('#progress-fill').style.width, '100%');
   assert.equal(unloading(), false, 'No close warning once finished');
   doc.documentElement.pointerleave({ pointerType: 'mouse', clientY: 0 });
@@ -297,6 +299,6 @@ for (const meme of memes) {
   hashes.add(crypto.createHash('sha256').update(data).digest('hex'));
 }
 assert.equal(hashes.size, 10, 'Each question has a different GIF file');
-console.log('Passed: loading and retry including music; radio start/pause/volume/play rejection; envelope drag; bounded camera movement; HUD phases; 1024 quiz routes; final-only confetti; Steam link; repeated exit popup.');
+console.log('Passed: loading and retry including music; radio start/pause/volume/play rejection; envelope drag; bounded camera movement; HUD phases; 1024 quiz routes; no confetti; Steam link; repeated exit popup.');
 
 })().catch(error => { console.error(error); process.exitCode = 1; });

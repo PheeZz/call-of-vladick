@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&family=Roboto+Condensed:wght@500;600;700;800;900&display=swap');
+@font-face { font-family: 'Radio Pixel'; src: url('assets/radio-pixel.ttf') format('truetype'); font-display: swap; }
 
 :root { color-scheme: dark; --paper: #151a17; --ink: #e8e9e0; --accent: #ffcf00; --line: #363f35; --muted: #a1aa9b; }
 * { box-sizing: border-box; }
@@ -70,9 +71,6 @@ footer { display: flex; justify-content: space-between; gap: 20px; color: var(--
 .escape-zone .answer:hover { transform: none; }
 .answer.converted { color: #e6ecd8; background: #384a2e; border-color: #849866; animation: button-flip .35s ease-out; }
 .answer.insistent { animation: insist .4s ease-out; box-shadow: 0 0 0 5px #ffcf0020; }
-.sparks { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 2; }
-.sparks i { position: absolute; top: 36%; left: 50%; font-size: 18px; color: var(--accent); font-style: normal; opacity: 0; animation: burst .85s ease-out calc(var(--i) * 12ms) both; }
-.sparks i:nth-child(3n) { color: #8d4a32; font-size: 26px; }
 .roulette { font-size: 110px; color: var(--accent); width: fit-content; margin: 15px 0 35px; animation: spin .3s linear infinite; }
 .result-mark { animation: result-in .7s cubic-bezier(.2, 1.5, .5, 1); }
 dialog { width: min(480px, calc(100% - 32px)); padding: 32px; border: 1px solid var(--ink); border-radius: 5px; background: var(--paper); color: var(--ink); box-shadow: 12px 12px 0 #262e2930; }
@@ -86,7 +84,6 @@ dialog p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-bottom
 @keyframes photo-in { 0% { opacity: 0; transform: rotate(5deg) scale(.92); } 65% { transform: rotate(-2deg); } 100% { opacity: 1; transform: rotate(0); } }
 @keyframes button-flip { 50% { transform: rotateX(70deg); } }
 @keyframes insist { 50% { transform: scale(1.06); } }
-@keyframes burst { 0% { opacity: 0; transform: translate(0, 0) scale(.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--x), var(--y)) rotate(150deg) scale(1.2); } }
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes result-in { from { transform: translateY(16px) scale(.75); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
 @keyframes dialog-in { from { opacity: 0; transform: translateY(25px) rotate(-3deg); } to { opacity: 1; transform: translateY(0) rotate(0); } }
@@ -279,9 +276,8 @@ dialog p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-bottom
 @keyframes deployment-wipe { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
 @keyframes launch-sheen { 0%, 75% { transform: skewX(-18deg) translateX(0); } 100% { transform: skewX(-18deg) translateX(600%); } }
 @media (max-width: 560px) { .table-dust i:nth-child(n+9) { display: none; } .landing-wave { width: 90vw; top: 48%; } .light-shaft { left: 0; width: 100%; } .candle-smoke i:nth-child(3) { display: none; } .result-mark { width: 80px; height: 80px; } .deployment-status { font-size: 13px; padding-inline: 12px; } }
-.field-radio { position: fixed; z-index: 40; right: 16px; bottom: 14px; width: min(300px, calc(100vw - 32px)); padding: 10px 13px; color: #d7d9c9; background: #141711f5; border: 1px solid #666345; box-shadow: 0 8px 30px #0008; font: 10px/1.4 monospace; }
+.field-radio { position: fixed; z-index: 40; top: 10px; left: 0; right: 0; margin-inline: auto; width: min(340px, calc(100vw - 32px)); padding: 10px 13px; color: #d7d9c9; background: #141711f5; border: 1px solid #666345; box-shadow: 0 8px 30px #0008; font: 10px/1.4 monospace; }
 .field-radio[hidden] { display: none; }
-.intro-playing .field-radio { top: 16px; bottom: auto; }
 .field-radio summary { display: flex; align-items: center; gap: 9px; cursor: pointer; list-style: none; color: var(--accent); letter-spacing: 1px; }
 .field-radio summary::-webkit-details-marker { display: none; }
 .field-radio summary b { margin-left: auto; }
@@ -290,11 +286,14 @@ dialog p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-bottom
 .is-playing .radio-lamp { background: var(--accent); box-shadow: 0 0 8px var(--accent); animation: signal-breathe 2s infinite; }
 .radio-display { margin-top: 10px; padding: 8px 10px; background: #070b06; border: 1px solid #3d432d; box-shadow: inset 0 0 14px #92a53412; }
 .radio-display > span { color: #75825a; text-transform: uppercase; font-size: 8px; }
-.radio-display p { margin: 5px 0 0; color: #c8dc91; font: 12px/1.45 monospace; text-shadow: 0 0 5px #a3bf5140; }
+.radio-display p { margin: 7px 0 0; color: #c8dc91; font: 9px/2 'Radio Pixel', monospace; text-shadow: 0 0 5px #a3bf5140; }
+.radio-word { display: inline-block; white-space: nowrap; }
+.radio-letter { animation: radio-letter-glow 3.8s steps(3, end) calc(var(--letter) * -70ms) infinite; }
+@keyframes radio-letter-glow { 0%, 55%, 100% { opacity: .8; text-shadow: 0 0 3px #a3bf5140; } 65%, 80% { opacity: 1; color: #ecffb5; text-shadow: 0 0 7px #c8ff6a; } }
 .radio-controls { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
 .radio-controls button { flex: 0 0 36px; height: 32px; border: 1px solid #767044; background: #27291e; color: var(--accent); cursor: pointer; }
 .radio-controls input { min-width: 0; width: 100%; accent-color: var(--accent); cursor: pointer; }
 .radio-controls output { min-width: 30px; text-align: right; }
 .radio-status { margin: 6px 0 0; color: #8e9879; font-size: 8px; }
-@media (max-width: 560px) { .field-radio { right: 8px; bottom: 8px; width: min(270px, calc(100vw - 16px)); } }
+@media (max-width: 560px) { .field-radio { top: 8px; width: min(300px, calc(100vw - 16px)); } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; transform: none !important; } }
